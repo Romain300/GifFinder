@@ -1,0 +1,72 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/026/501/781/small_2x/colorful-gradient-fluid-abstract-background-vector.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    padding: 1rem;
+    background-color: black;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#next-gif {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: orangered;
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+
+.container div {
+    text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+form {
+    color: whitesmoke;
+}
+
+fieldset {
+    padding: 1rem;
+}
+
+legend {
+    font-weight: 600;
+    padding: 0.3rem;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid orangered;
+}
+
+input {
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+}
+
+#search-gif {
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.3rem;
+    background-color: orangered;
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+

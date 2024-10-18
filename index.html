@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Test API GIF</title>
+</head>
+<body>
+    <div class="container">
+        <img src="" alt="Gif Test">
+        <div>
+            <button id="next-gif" type="button">NEXT GIF</button>
+        </div>
+        
+        <form>
+            <fieldset>
+                <legend>New Research</legend>
+                <div>
+                    <label for="research">Search:</label>
+                    <input required type="text" id="research" placeholder="Enter a key word">
+                </div>
+                <button id="search-gif" type="submit">Go</button>
+            </fieldset>
+        </form>
+    </div>
+    
+
+    <script>
+        const img = document.querySelector("img");
+        const nextButton = document.querySelector("#next-gif");
+        const newGifButton = document.querySelector("#search-gif");
+        const newSearch = document.querySelector("#research");
+        const form = document.querySelector("form");
+        let subject = "hello";
+        function fetchGif(search) {
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=Gy8nCcfrijaWFNQdrWvcOiETdLB7W7AR&s=${search}`,
+            {
+                mode: "cors",
+            }
+            )
+            .then(function(response) {
+                if(!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);      
+                } else {
+                    return response.json();
+                }
+                
+            })
+            .then(function(response) {
+                console.log(response.data.images.original.url);
+                if (response.data.images.original.url === "") {
+                    throw new Error("No GIF found");
+                } else {
+                    img.src = response.data.images.original.url;  
+                }
+            })
+            .catch(e => {
+                console.log(e);
+                img.src = "https://freefrontend.com/assets/img/html-funny-404-pages/HTML-404-Page.gif";
+            });
+        };
+
+        function searchGif(newSubject) { 
+            subject = newSubject;
+            fetchGif(subject);
+        };
+
+        fetchGif(subject);
+        nextButton.addEventListener("click", () => {
+            fetchGif(subject);
+        }); 
+
+        newGifButton.addEventListener("click", (event) => {
+            let newResearch = newSearch.value;
+            if (newResearch === "") {
+                alert("Please fill the search field.")
+            } else {
+                searchGif(newResearch);
+                form.reset();
+            };
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
